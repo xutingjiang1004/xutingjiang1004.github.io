@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <!--  hero 区 -->
+    <!-- hero 区 -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="container mx-auto px-6 md:px-12 py-24 md:py-0">
             <div class="max-w-4xl mx-auto text-center">
@@ -119,7 +119,7 @@
             </div>
             
             <div class="text-center mt-16">
-                <a href="#" class="inline-block border-2 border-primary px-8 py-3 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300">
+                <a href="#" class="inline-block border-2 border-primary px-8 py-3 text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300">
                     查看全部作品
                 </a>
             </div>
@@ -175,9 +175,20 @@
             // 登录验证 & 跳转后台
             loginBtn.addEventListener('click', () => {
                 if (adminPassword.value === ADMIN_PASSWORD) {
+                    console.log("密码正确，准备跳转...");
                     closeLogin();
                     setTimeout(() => {
-                        window.location.href = "admin.html"; // 跳转到后台页
+                        // 使用绝对路径确保跳转正确
+                        const currentDomain = window.location.origin;
+                        window.location.href = `${currentDomain}/admin.html`;
+                        
+                        // 为了调试，添加备选跳转方案
+                        setTimeout(() => {
+                            if (window.location.pathname !== "/admin.html") {
+                                alert("跳转失败！请确保admin.html文件存在于根目录。");
+                                console.error("跳转失败，当前URL:", window.location.href);
+                            }
+                        }, 1000);
                     }, 300);
                 } else {
                     // 密码错误动画
@@ -186,6 +197,7 @@
                     setTimeout(() => modalDiv.classList.remove('animate-shake'), 500);
                     adminPassword.classList.add('border-red-500');
                     setTimeout(() => adminPassword.classList.remove('border-red-500'), 2000);
+                    adminPassword.value = '';
                 }
             });
             
