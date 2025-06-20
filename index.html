@@ -153,8 +153,11 @@
                     <i class="fa fa-times"></i>
                 </button>
             </div>
-            <div class="relative">
-                <img id="modalImage" src="" alt="大图预览" class="max-h-[80vh] mx-auto object-contain">
+            <div class="relative min-h-[80vh] max-h-[80vh] flex items-center justify-center overflow-hidden">
+                <div id="imageLoading" class="text-white text-4xl" style="display: none;">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+                <img id="modalImage" src="" alt="大图预览" class="max-h-[80vh] max-w-[90vw] mx-auto object-contain transition-opacity duration-300">
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-2 rounded-full">
                     <span id="modalImageTitle" class="text-sm"></span>
                 </div>
@@ -173,18 +176,44 @@
         
         // 打开图片预览
         function openImageModal(imgSrc, title) {
+            // 计算滚动条宽度以防止页面跳动
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.transition = 'padding-right 0.3s ease';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.body.style.overflow = 'hidden'; // 立即隐藏滚动条
+            
+            // 预加载图片以避免尺寸跳动
+            modalImage.style.opacity = '0';
+            // 先设置onload事件再设置src，确保缓存图片也能触发加载完成事件
+            modalImage.onload = function() {
+                // 隐藏加载指示器
+                document.getElementById('imageLoading').style.display = 'none';
+                modalImage.style.opacity = '1';
+                // 延迟显示模态框以确保过渡效果流畅
+                imageModal.classList.remove('opacity-0', 'pointer-events-none');
+            };
+            
+            // 图片加载错误处理
+            modalImage.onerror = function() {
+                alert('图片加载失败，请重试');
+                closeModal.click();
+            };
+            
+            // 显示加载指示器
+            document.getElementById('imageLoading').style.display = 'block';
             modalImage.src = imgSrc;
             modalImageTitle.textContent = title;
-            
-            
-            imageModal.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'hidden'; // 防止背景滚动
         }
         
         // 关闭图片预览
         closeModal.addEventListener('click', () => {
             imageModal.classList.add('opacity-0', 'pointer-events-none');
             document.body.style.overflow = ''; // 恢复背景滚动
+            document.body.style.paddingRight = ''; // 恢复padding
+            // 移除过渡效果
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 300);
         });
         
         // 点击模态框背景关闭
