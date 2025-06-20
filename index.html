@@ -172,23 +172,60 @@
                 if (e.target === loginModal) closeLogin();
             });
             
-            // 登录验证 & 跳转后台
+            // 登录验证 & 跳转后台（优化版）
             loginBtn.addEventListener('click', () => {
                 if (adminPassword.value === ADMIN_PASSWORD) {
                     console.log("密码正确，准备跳转...");
+                    
+                    // 显示加载状态
+                    const loginBtnText = loginBtn.innerHTML;
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 登录中...';
+                    
                     closeLogin();
+                    
+                    // 使用更可靠的跳转方法
                     setTimeout(() => {
-                        // 使用绝对路径确保跳转正确
-                        const currentDomain = window.location.origin;
-                        window.location.href = `${currentDomain}/admin.html`;
-                        
-                        // 为了调试，添加备选跳转方案
-                        setTimeout(() => {
-                            if (window.location.pathname !== "/admin.html") {
-                                alert("跳转失败！请确保admin.html文件存在于根目录。");
-                                console.error("跳转失败，当前URL:", window.location.href);
-                            }
-                        }, 1000);
+                        try {
+                            // 构建完整URL
+                            const currentDomain = window.location.origin;
+                            const adminUrl = `${currentDomain}/admin.html`;
+                            
+                            // 记录跳转前的状态
+                            sessionStorage.setItem('login_attempt', 'true');
+                            
+                            // 执行跳转
+                            window.location.href = adminUrl;
+                            
+                            // 如果10秒后仍未跳转成功，显示错误提示
+                            setTimeout(() => {
+                                if (window.location.pathname !== "/admin.html") {
+                                    alert("跳转失败！请确保admin.html文件存在于根目录。");
+                                    console.error("跳转失败，当前URL:", window.location.href);
+                                    
+                                    // 重置登录按钮状态
+                                    loginBtn.disabled = false;
+                                    loginBtn.innerHTML = loginBtnText;
+                                    
+                                    // 重新显示登录框
+                                    setTimeout(() => {
+                                        adminLoginBtn.click();
+                                    }, 100);
+                                }
+                            }, 10000); // 10秒超时
+                        } catch (error) {
+                            console.error("登录跳转出错:", error);
+                            alert("登录过程中发生错误: " + error.message);
+                            
+                            // 重置登录按钮状态
+                            loginBtn.disabled = false;
+                            loginBtn.innerHTML = loginBtnText;
+                            
+                            // 重新显示登录框
+                            setTimeout(() => {
+                                adminLoginBtn.click();
+                            }, 100);
+                        }
                     }, 300);
                 } else {
                     // 密码错误动画
@@ -198,6 +235,11 @@
                     adminPassword.classList.add('border-red-500');
                     setTimeout(() => adminPassword.classList.remove('border-red-500'), 2000);
                     adminPassword.value = '';
+                    
+                    // 轻微延迟聚焦，确保动画完成
+                    setTimeout(() => {
+                        adminPassword.focus();
+                    }, 550);
                 }
             });
             
@@ -207,6 +249,19 @@
                     alert('点击图片可放大/缩小，底部有下载按钮～');
                 });
             });
+            
+            // 检查是否是登录后跳转失败的情况
+            if (sessionStorage.getItem('login_attempt') === 'true') {
+                sessionStorage.removeItem('login_attempt');
+                
+                // 如果当前页面不是admin.html，说明跳转失败
+                if (window.location.pathname !== "/admin.html") {
+                    setTimeout(() => {
+                        alert("登录成功但无法跳转到后台页面。请确认admin.html文件存在于正确位置。");
+                        adminLoginBtn.click();
+                    }, 1000);
+                }
+            }
         });
     </script>
 </body>
