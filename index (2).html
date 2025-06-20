@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爸爸 - 精选设计作品集</title>
+    <meta name="description" content="精选设计作品集，展示极简美学与功能解决方案">
+    <meta name="keywords" content="设计作品集, 极简主义, 建筑设计, 品牌设计">
+    <meta name="author" content="爸爸">
+    
+    <!-- 优化：预加载关键资源 -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- 优化：异步加载非关键脚本 -->
+    <script src="https://cdn.tailwindcss.com" async></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#111111',
+                        secondary: '#666666',
+                        accent: '#007AFF',
+                        neutral: '#F5F5F5',
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                        danger: '#EF4444',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    transitionTimingFunction: {
+                        'smooth': 'cubic-bezier(0.65, 0, 0.35, 1)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            .animate-slide-up {
+                animation: slideUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            .animate-scale-in {
+                animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            .animate-fade-out {
+                animation: fadeOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            .blur-up {
+                filter: blur(8px);
+                transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .blur-up.loaded {
+                filter: blur(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="font-inter bg-white text-primary antialiased overflow-x-hidden">
+    <!-- 登录模态框 -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md transform scale-95 transition-all duration-300">
+            <h2 class="text-2xl font-light mb-6">管理员登录</h2>
+            <input type="password" id="adminPassword" placeholder="请输入管理员密码" class="w-full p-3 border border-gray-300 mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all">
+            <button id="loginBtn" class="w-full bg-primary text-white p-3 rounded-md hover:bg-accent transition-colors duration-300 flex items-center justify-center">
+                <span>登录</span>
+                <i class="fa fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 图片预览模态框 -->
+    <div id="imagePreviewModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative max-w-6xl w-full p-4">
+            <button id="closePreviewBtn" class="absolute top-4 right-4 text-white text-3xl hover:text-accent transition-colors">
+                <i class="fa fa-times"></i>
+            </button>
+            <button id="downloadBtn" class="absolute bottom-4 right-4 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-colors">
+                <i class="fa fa-download"></i>
+            </button>
+            <img id="previewImage" src="" alt="预览图片" class="max-h-[85vh] max-w-full mx-auto object-contain">
+            <h3 id="previewTitle" class="text-white text-center mt-4 text-xl"></h3>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12 py-24 md:py-0">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-light leading-tight mb-8 opacity-0" data-aos="fade-in" style="animation-delay: 0.2s">
+                    爸爸
+                </h1>
+                <button id="adminLoginBtn" class="inline-block border-2 border-primary px-8 py-3 text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 opacity-0" data-aos="fade-in" style="animation-delay: 0.6s">
+                    管理员登录
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 上传区域 (默认隐藏) -->
+    <section id="uploadSection" class="py-12 bg-neutral hidden">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:shadow-xl">
+                <h2 class="text-2xl font-light mb-6">上传新照片</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">照片标题</label>
+                        <input type="text" id="photoTitle" name="title" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">选择照片</label>
+                        <div class="relative">
+                            <input type="file" id="photoFile" name="photo" accept="image/*" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all">
+                            <div id="filePreview" class="hidden mt-4 p-4 border border-dashed border-gray-300 rounded-md">
+                                <img id="previewImage" src="" alt="预览图" class="max-h-40 mx-auto object-contain">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-primary text-white px-6 py-3 rounded-md hover:bg-accent transition-colors duration-300 flex items-center">
+                        <i class="fa fa-upload mr-2"></i>
+                        <span>上传照片</span>
+                    </button>
+                </form>
+                <div id="uploadStatus" class="mt-4 hidden p-3 rounded-md"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-24 bg-neutral">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,4vw,2.5rem)] font-light mb-4 opacity-0" data-aos="fade-in">精选作品</h2>
+                <p class="text-secondary max-w-2xl mx-auto opacity-0" data-aos="fade-in" style="animation-delay: 0.2s">
+                    我们精心挑选的最具影响力的设计项目，展示我们对极简美学和功能解决方案的追求。
+                </p>
+            </div>
+            
+            <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 动态加载照片 -->
+            </div>
+            
+            <div class="text-center mt-16 opacity-0" data-aos="fade-in" style="animation-delay: 0.4s">
+                <a href="#" class="inline-block border-2 border-primary px-8 py-3 text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300">
+                    查看全部作品
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-12 bg-primary text-white/80 border-t border-white/10">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center opacity-0" data-aos="fade-in">
+                <p class="text-sm">© 2025 爸爸. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 模拟管理员密码
+        const ADMIN_PASSWORD = "admin123";
+        let isAdmin = false;
+        let currentPhoto = null;
+        
+        // 模拟照片数据 - 实际应用中应该从后端API获取
+        const photos = [
+            {
+                id: 1,
+                title: "朴宝剑1",
+                url: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_9224f763-cb09-42a3-b045-30dd74061fdd.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879845&x-signature=yc%2FIrkYZVdH9A%2BeWilEv9KOCwP8%3D",
+                originalUrl: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_9224f763-cb09-42a3-b045-30dd74061fdd.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879845&x-signature=yc%2FIrkYZVdH9A%2BeWilEv9KOCwP8%3D"
+            },
+            {
+                id: 2,
+                title: "朴宝剑2",
+                url: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_1a818158-35b8-483d-906d-58e468427728.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879858&x-signature=pMg3IbIGchChbzekleT2ew0DHg8%3D",
+                originalUrl: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_1a818158-35b8-483d-906d-58e468427728.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879858&x-signature=pMg3IbIGchChbzekleT2ew0DHg8%3D"
+            },
+            {
+                id: 3,
+                title: "朴宝剑3",
+                url: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_300147cb-bdbd-4cff-8278-b1c7bbb0f535.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879872&x-signature=UV6WPMhGEPbREKH8ew9%2Bby5kWLE%3D",
+                originalUrl: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_300147cb-bdbd-4cff-8278-b1c7bbb0f535.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879872&x-signature=UV6WPMhGEPbREKH8ew9%2Bby5kWLE%3D"
+            },
+            {
+                id: 4,
+                title: "朴宝剑4",
+                url: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_80114dd5-5d4d-42a6-9bcc-2968bdde7365.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879888&x-signature=cpdA%2FO9pSQbkCNrBMlElKP2s%2FaY%3D",
+                originalUrl: "https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_80114dd5-5d4d-42a6-9bcc-2968bdde7365.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879888&x-signature=cpdA%2FO9pSQbkCNrBMlElKP2s%2FaY%3D"
+            },
+            {
+                id: 5,
+                title: "朴宝剑5",
+                url: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_b184c32c-d7e5-4bd5-bd9a-16d5d3442ffe.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879896&x-signature=znbnPeMzDXRS5p1vzdlt83fzdGs%3D",
+                originalUrl: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_b184c32c-d7e5-4bd5-bd9a-16d5d3442ffe.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879896&x-signature=znbnPeMzDXRS5p1vzdlt83fzdGs%3D"
+            },
+            {
+                id: 6,
+                title: "朴宝剑6",
+                url: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_396a3f40-5a2d-44eb-afc6-e592b29a6c37.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879909&x-signature=CieDVUEW4A3ZOt98VwBnrnNyWag%3D",
+                originalUrl: "https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/pages_upload_image_396a3f40-5a2d-44eb-afc6-e592b29a6c37.jpeg~tplv-a9rns2rl98-image-qvalue.jpeg?rk3s=6823e3d0&x-expires=1781879909&x-signature=CieDVUEW4A3ZOt98VwBnrnNyWag%3D"
+            }
+        ];
+
+        // DOM 加载完成后执行
+        document.addEventListener('DOMContentLoaded', () => {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 渲染照片画廊
+            renderGallery();
+            
+            // 登录相关事件
+            const loginModal = document.getElementById('loginModal');
+            const adminLoginBtn = document.getElementById('adminLoginBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const adminPassword = document.getElementById('adminPassword');
+            
+            adminLoginBtn.addEventListener('click', () => {
+                loginModal.classList.remove('pointer-events-none');
+                loginModal.classList.add('opacity-100');
+                loginModal.querySelector('div').classList.remove('scale-95');
+                loginModal.querySelector('div').classList.add('scale-100');
+                adminPassword.focus();
+            });
+            
+            loginBtn.addEventListener('click', () => {
+                if (adminPassword.value === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    loginModal.classList.add('opacity-0');
+                    loginModal.querySelector('div').classList.remove('scale-100');
+                    loginModal.querySelector('div').classList.add('scale-95');
+                    
+                    setTimeout(() => {
+                        loginModal.classList.add('pointer-events-none');
+                        document.getElementById('uploadSection').classList.remove('hidden');
+                        document.getElementById('uploadSection').classList.add('animate-scale-in');
+                        adminLoginBtn.textContent = "管理员已登录";
+                        adminLoginBtn.disabled = true;
+                        adminLoginBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    }, 300);
+                } else {
+                    shake(loginModal.querySelector('div'));
+                    adminPassword.classList.add('border-danger');
+                    setTimeout(() => {
+                        adminPassword.classList.remove('border-danger');
+                    }, 2000);
+                }
+            });
+            
+            // 文件预览
+            const photoFile = document.getElementById('photoFile');
+            const filePreview = document.getElementById('filePreview');
+            const previewImage = document.getElementById('previewImage');
+            
+            photoFile.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        filePreview.classList.remove('hidden');
+                        previewImage.classList.add('blur-up');
+                        
+                        // 图片加载完成后移除模糊
+                        previewImage.onload = function() {
+                            previewImage.classList.add('loaded');
+                        };
+                    };
+                    
+                    reader.readAsDataURL(file);
+                } else {
+                    filePreview.classList.add('hidden');
+                }
+            });
+            
+            // 上传表单处理
+            const uploadForm = document.getElementById('uploadForm');
+            const uploadStatus = document.getElementById('uploadStatus');
+            
+            uploadForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const title = document.getElementById('photoTitle').value;
+                const file = document.getElementById('photoFile').files[0];
+                
+                if (!title || !file) {
+                    showStatus('请填写标题并选择照片', 'warning');
+                    return;
+                }
+                
+                // 显示上传状态
+                showStatus('正在上传...', 'warning');
+                
+                // 模拟上传延迟
+                setTimeout(() => {
+                    // 模拟成功
+                    showStatus('上传成功！', 'success');
+                    
+                    // 添加新照片到画廊
+                    const newPhoto = {
+                        id: photos.length + 1,
+                        title: title,
+                        url: URL.createObjectURL(file),
+                        originalUrl: URL.createObjectURL(file) // 实际应用中应该是服务器上的原图URL
+                    };
+                    
+                    photos.push(newPhoto);
+                    renderGallery();
+                    
+                    // 重置表单
+                    uploadForm.reset();
+                    filePreview.classList.add('hidden');
+                    
+                    // 5秒后隐藏状态提示
+                    setTimeout(() => {
+                        uploadStatus.classList.add('hidden');
+                    }, 5000);
+                    
+                }, 2000);
+            });
+            
+            // 评论提交动画 - 使用事件委托优化
+            document.body.addEventListener('click', (e) => {
+                if (e.target.closest('.comment-section button')) {
+                    const commentBtn = e.target.closest('.comment-section button');
+                    const textarea = commentBtn.previousElementSibling;
+                    
+                    if (textarea.value.trim()) {
+                        // 模拟提交成功
+                        commentBtn.innerHTML = '<i class="fa fa-check"></i>';
+                        commentBtn.classList.add('bg-success');
+                        
+                        setTimeout(() => {
+                            textarea.value = '';
+                            commentBtn.innerHTML = '提交评论';
+                            commentBtn.classList.remove('bg-success');
+                        }, 1500);
+                    } else {
+                        shake(textarea);
+                    }
+                }
+            });
+            
+            // 图片预览相关事件
+            const imagePreviewModal = document.getElementById('imagePreviewModal');
+            const closePreviewBtn = document.getElementById('closePreviewBtn');
+            const previewImageElement = document.getElementById('previewImage');
+            const previewTitleElement = document.getElementById('previewTitle');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // 关闭预览
+            closePreviewBtn.addEventListener('click', () => {
+                imagePreviewModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    imagePreviewModal.classList.add('pointer-events-none');
+                }, 300);
+            });
+            
+            // 点击预览模态框背景关闭
+            imagePreviewModal.addEventListener('click', (e) => {
+                if (e.target === imagePreviewModal) {
+                    imagePreviewModal.classList.add('opacity-0');
+                    setTimeout(() => {
+                        imagePreviewModal.classList.add('pointer-events-none');
+                    }, 300);
+                }
+            });
+            
+            // 下载按钮事件
+            downloadBtn.addEventListener('click', () => {
+                if (currentPhoto) {
+                    const link = document.createElement('a');
+                    link.href = currentPhoto.originalUrl;
+                    link.download = currentPhoto.title;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+            
+            // 长按下载功能
+            let longPressTimer;
+            previewImageElement.addEventListener('touchstart', (e) => {
+                longPressTimer = setTimeout(() => {
+                    if (currentPhoto) {
+                        const link = document.createElement('a');
+                        link.href = currentPhoto.originalUrl;
+                        link.download = currentPhoto.title;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }, 800); // 长按时间阈值，单位毫秒
+            });
+            
+            previewImageElement.addEventListener('touchend', () => {
+                clearTimeout(longPressTimer);
+            });
+            
+            previewImageElement.addEventListener('touchmove', () => {
+                clearTimeout(longPressTimer);
+            });
+            
+            // 键盘事件 - ESC关闭预览
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !imagePreviewModal.classList.contains('pointer-events-none')) {
+                    imagePreviewModal.classList.add('opacity-0');
+                    setTimeout(() => {
+                        imagePreviewModal.classList.add('pointer-events-none');
+                    }, 300);
+                }
+            });
+        });
+        
+        // 渲染照片画廊 - 使用DocumentFragment优化
+        function renderGallery() {
+            const gallery = document.getElementById('gallery');
+            const fragment = document.createDocumentFragment();
+            
+            photos.forEach((photo, index) => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'group relative overflow-hidden opacity-0';
+                photoCard.setAttribute('data-aos', 'fade-up');
+                photoCard.style.animationDelay = `${0.1 + index * 0.1}s`;
+                
+                photoCard.innerHTML = `
+                    <div class="relative overflow-hidden rounded-lg shadow-md cursor-pointer">
+                        <img src="${photo.url}" 
+                            alt="${photo.title}" 
+                            class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105 blur-up gallery-image"
+                            data-id="${photo.id}"
+                            data-title="${photo.title}"
+                            data-original-url="${photo.originalUrl}"
+                            loading="lazy"> <!-- 优化：添加图片懒加载 -->
+                        <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span class="text-white uppercase tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                点击查看大图
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-medium mt-4 mb-2">${photo.title}</h3>
+                    <div class="comment-section bg-white p-4 border border-gray-200 rounded-md mt-2 transform transition-all duration-300 hover:shadow-md">
+                        <textarea placeholder="留下你的评论..." class="w-full p-3 border border-gray-300 rounded-md mb-2 text-secondary font-inter focus:outline-none focus:ring-2 focus:ring-accent transition-all" rows="3"></textarea>
+                        <button class="w-full bg-primary text-white p-3 rounded-md hover:bg-accent transition-colors duration-300 flex items-center justify-center">
+                            <span>提交评论</span>
+                        </button>
+                    </div>
+                `;
+                
+                fragment.appendChild(photoCard);
+                
+                // 图片加载完成后移除模糊
+                const img = photoCard.querySelector('img');
+                img.onload = function() {
+                    img.classList.add('loaded');
+                };
+                
+                // 触发动画
+                setTimeout(() => {
+                    photoCard.classList.add('animate-fade-in');
+                }, 50);
+            });
+            
+            // 使用DocumentFragment减少DOM重绘
+            gallery.innerHTML = '';
+            gallery.appendChild(fragment);
+            
+            // 添加点击事件到所有图片
+            document.querySelectorAll('.gallery-image').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    const id = e.target.dataset.id;
+                    const title = e.target.dataset.title;
+                    const originalUrl = e.target.dataset.originalUrl;
+                    
+                    currentPhoto = { id, title, originalUrl };
+                    
+                    const previewImage = document.getElementById('previewImage');
+                    const previewTitle = document.getElementById('previewTitle');
+                    const imagePreviewModal = document.getElementById('imagePreviewModal');
+                    
+                    previewImage.src = originalUrl;
+                    previewTitle.textContent = title;
+                    
+                    imagePreviewModal.classList.remove('pointer-events-none');
+                    setTimeout(() => {
+                        imagePreviewModal.classList.remove('opacity-0');
+                    }, 10);
+                });
+            });
+        }
+        
+        // 显示状态提示
+        function showStatus(message, type) {
+            const uploadStatus = document.getElementById('uploadStatus');
+            uploadStatus.textContent = message;
+            uploadStatus.className = 'mt-4 p-3 rounded-md flex items-center';
+            
+            if (type === 'success') {
+                uploadStatus.classList.add('bg-success/10', 'text-success');
+                uploadStatus.innerHTML = `<i class="fa fa-check-circle mr-2"></i> ${message}`;
+            } else if (type === 'warning') {
+                uploadStatus.classList.add('bg-warning/10', 'text-warning');
+                uploadStatus.innerHTML = `<i class="fa fa-exclamation-circle mr-2"></i> ${message}`;
+            } else if (type === 'error') {
+                uploadStatus.classList.add('bg-danger/10', 'text-danger');
+                uploadStatus.innerHTML = `<i class="fa fa-times-circle mr-2"></i> ${message}`;
+            }
+            
+            uploadStatus.classList.remove('hidden');
+        }
+        
+        // 抖动动画
+        function shake(element) {
+            element.classList.add('animate-[wiggle_0.5s_ease-in-out]');
+            setTimeout(() => {
+                element.classList.remove('animate-[wiggle_0.5s_ease-in-out]');
+            }, 500);
+        }
+        
+        // 滚动动画 - 使用节流优化
+        let throttleTimer = false;
+        const animateOnScroll = () => {
+            if (throttleTimer) return;
+            throttleTimer = true;
+            
+            setTimeout(() => {
+                const elements = document.querySelectorAll('[data-aos]');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight * 0.85 && !element.classList.contains('animate-fade-in')) {
+                        element.classList.add('animate-fade-in');
+                    }
+                });
+                
+                throttleTimer = false;
+            }, 200);
+        };
+        
+        // 初始检查和滚动监听
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>    
