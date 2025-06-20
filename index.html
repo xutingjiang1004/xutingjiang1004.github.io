@@ -117,7 +117,7 @@
                 <i class="fa fa-times"></i>
             </button>
             <div class="relative">
-                <img id="previewImage" src="" alt="预览图片" class="max-h-[80vh] max-w-full mx-auto object-contain">
+                <img id="previewImage" src="" alt="预览图片" class="max-h-[80vh] max-w-full mx-auto object-contain cursor-zoom-in transition-transform duration-300">
             </div>
             <div class="text-white text-center mt-4">
                 <h3 id="previewTitle" class="text-xl mb-3"></h3>
@@ -211,6 +211,7 @@
         const ADMIN_PASSWORD = "admin123";
         let isAdmin = false;
         let currentPhoto = null;
+        let isZoomed = false;
         
         // 模拟照片数据 - 实际应用中应该从后端API获取
         const photos = [
@@ -416,19 +417,13 @@
             
             // 关闭预览
             closePreviewBtn.addEventListener('click', () => {
-                imagePreviewModal.classList.add('opacity-0');
-                setTimeout(() => {
-                    imagePreviewModal.classList.add('pointer-events-none');
-                }, 300);
+                closeModal();
             });
             
             // 点击预览模态框背景关闭
             imagePreviewModal.addEventListener('click', (e) => {
                 if (e.target === imagePreviewModal) {
-                    imagePreviewModal.classList.add('opacity-0');
-                    setTimeout(() => {
-                        imagePreviewModal.classList.add('pointer-events-none');
-                    }, 300);
+                    closeModal();
                 }
             });
             
@@ -456,36 +451,17 @@
                 }
             });
             
-            // 长按下载功能
-            let longPressTimer;
-            previewImageElement.addEventListener('touchstart', (e) => {
-                longPressTimer = setTimeout(() => {
-                    if (currentPhoto) {
-                        const link = document.createElement('a');
-                        link.href = currentPhoto.originalUrl;
-                        link.download = `${currentPhoto.title}_原图`;
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    }
-                }, 800); // 长按时间阈值，单位毫秒
-            });
-            
-            previewImageElement.addEventListener('touchend', () => {
-                clearTimeout(longPressTimer);
-            });
-            
-            previewImageElement.addEventListener('touchmove', () => {
-                clearTimeout(longPressTimer);
+            // 点击图片缩放
+            previewImageElement.addEventListener('click', () => {
+                isZoomed = !isZoomed;
+                previewImageElement.style.transform = isZoomed ? 'scale(2)' : 'scale(1)';
+                previewImageElement.style.cursor = isZoomed ? 'zoom-out' : 'zoom-in';
             });
             
             // 键盘事件 - ESC关闭预览
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !imagePreviewModal.classList.contains('pointer-events-none')) {
-                    imagePreviewModal.classList.add('opacity-0');
-                    setTimeout(() => {
-                        imagePreviewModal.classList.add('pointer-events-none');
-                    }, 300);
+                    closeModal();
                 }
             });
         });
@@ -551,12 +527,15 @@
                     const originalUrl = e.target.dataset.originalUrl;
                     
                     currentPhoto = { id, title, originalUrl };
+                    isZoomed = false;
                     
                     const previewImage = document.getElementById('previewImage');
                     const previewTitle = document.getElementById('previewTitle');
                     const imagePreviewModal = document.getElementById('imagePreviewModal');
                     
                     previewImage.src = originalUrl;
+                    previewImage.style.transform = 'scale(1)';
+                    previewImage.style.cursor = 'zoom-in';
                     previewTitle.textContent = title;
                     
                     // 显示预览模态框
@@ -566,6 +545,21 @@
                     }, 10);
                 });
             });
+        }
+        
+        // 关闭模态框
+        function closeModal() {
+            const imagePreviewModal = document.getElementById('imagePreviewModal');
+            const previewImage = document.getElementById('previewImage');
+            
+            imagePreviewModal.classList.add('opacity-0');
+            isZoomed = false;
+            previewImage.style.transform = 'scale(1)';
+            previewImage.style.cursor = 'zoom-in';
+            
+            setTimeout(() => {
+                imagePreviewModal.classList.add('pointer-events-none');
+            }, 300);
         }
         
         // 显示状态提示
