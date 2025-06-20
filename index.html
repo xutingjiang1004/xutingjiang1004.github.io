@@ -116,11 +116,22 @@
             <button id="closePreviewBtn" class="absolute top-4 right-4 text-white text-3xl hover:text-accent transition-colors">
                 <i class="fa fa-times"></i>
             </button>
-            <button id="downloadBtn" class="absolute bottom-4 right-4 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-colors">
-                <i class="fa fa-download"></i>
-            </button>
-            <img id="previewImage" src="" alt="预览图片" class="max-h-[85vh] max-w-full mx-auto object-contain">
-            <h3 id="previewTitle" class="text-white text-center mt-4 text-xl"></h3>
+            <div class="relative">
+                <img id="previewImage" src="" alt="预览图片" class="max-h-[80vh] max-w-full mx-auto object-contain">
+            </div>
+            <div class="text-white text-center mt-4">
+                <h3 id="previewTitle" class="text-xl mb-2"></h3>
+                <div class="flex justify-center gap-4">
+                    <button id="downloadBtn" class="bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-colors flex items-center">
+                        <i class="fa fa-download mr-2"></i>
+                        <span>下载原图</span>
+                    </button>
+                    <button id="downloadSmallBtn" class="bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-colors flex items-center">
+                        <i class="fa fa-download mr-2"></i>
+                        <span>下载预览图</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -172,9 +183,6 @@
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.5rem,4vw,2.5rem)] font-light mb-4 opacity-0" data-aos="fade-in">精选作品</h2>
-                <p class="text-secondary max-w-2xl mx-auto opacity-0" data-aos="fade-in" style="animation-delay: 0.2s">
-                    我们精心挑选的最具影响力的设计项目，展示我们对极简美学和功能解决方案的追求。
-                </p>
             </div>
             
             <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -404,6 +412,7 @@
             const previewImageElement = document.getElementById('previewImage');
             const previewTitleElement = document.getElementById('previewTitle');
             const downloadBtn = document.getElementById('downloadBtn');
+            const downloadSmallBtn = document.getElementById('downloadSmallBtn');
             
             // 关闭预览
             closePreviewBtn.addEventListener('click', () => {
@@ -423,12 +432,24 @@
                 }
             });
             
-            // 下载按钮事件
+            // 下载原图
             downloadBtn.addEventListener('click', () => {
                 if (currentPhoto) {
                     const link = document.createElement('a');
                     link.href = currentPhoto.originalUrl;
-                    link.download = currentPhoto.title;
+                    link.download = `${currentPhoto.title}_原图`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+            
+            // 下载预览图
+            downloadSmallBtn.addEventListener('click', () => {
+                if (currentPhoto) {
+                    const link = document.createElement('a');
+                    link.href = currentPhoto.url;
+                    link.download = `${currentPhoto.title}_预览图`;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -442,7 +463,7 @@
                     if (currentPhoto) {
                         const link = document.createElement('a');
                         link.href = currentPhoto.originalUrl;
-                        link.download = currentPhoto.title;
+                        link.download = `${currentPhoto.title}_原图`;
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
@@ -601,4 +622,5 @@
         window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
-</html>    
+</html>
+    
