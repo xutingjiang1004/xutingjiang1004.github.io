@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<title>XTJ · Liquid Glass Dock 演示</title>
+<title>XTJ · Liquid Glass V2 跟手拖拽演示</title>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft Yahei",sans-serif;color:#243d46;background:#e8f3f2;font-synthesis:none;--glass-tint:.33;--glass-blur:25px;--accent:#1889d4;--ease:cubic-bezier(.22,1.18,.27,1);}
 *{box-sizing:border-box}body{margin:0;min-height:100dvh;background:radial-gradient(ellipse at 13% 15%,#d5e4ff 0,transparent 34%),radial-gradient(ellipse at 88% 5%,#d0f6e6 0,transparent 35%),radial-gradient(ellipse at 82% 90%,#e5dcff 0,transparent 38%),#f5f8f7}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #65b7f0;outline-offset:3px}svg{display:block}.preview-layout{max-width:1050px;margin:auto;padding:36px 28px 48px}.top-heading{text-align:center;margin-bottom:27px}.tag{font-size:11px;font-weight:800;letter-spacing:2.3px;color:#60a7a1}.top-heading h1{margin:10px 0 7px;font-size:clamp(27px,4vw,39px);letter-spacing:-1.4px;font-weight:750;color:#213c44}.top-heading p{margin:0;font-size:13px;color:#7c9194}.workstation{display:flex;gap:55px;align-items:center;justify-content:center}.phone{width:393px;max-width:100%;flex:none;min-height:760px;height:min(780px,calc(100dvh - 160px));position:relative;border:8px solid #fdfefe;border-radius:51px;background:#fff;box-shadow:0 35px 70px rgba(55,103,110,.17),0 6px 18px rgba(42,70,78,.12),inset 0 0 0 1px rgba(60,90,90,.12);overflow:hidden;isolation:isolate}.phone::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.65);border-radius:42px;pointer-events:none;z-index:60}.phone-screen{height:100%;position:relative;background:#eff8f6;overflow:hidden;isolation:isolate;color:#294348}.ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 0% 14%,rgba(187,228,251,.75),transparent 49%),radial-gradient(circle at 90% 42%,rgba(193,244,217,.65),transparent 48%),linear-gradient(180deg,#f6fcfc 0%,#edf7f5 57%,#dff2e9 100%);z-index:-1}.status-bar{height:42px;padding:16px 29px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5;font-size:14px;font-weight:700;color:#273c46;letter-spacing:.2px}.status-icons{display:flex;align-items:center;gap:7px}.status-icons svg{height:14px;width:auto}.dynamic-island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:108px;height:25px;background:#182729;border-radius:20px}.scroll-viewport{position:absolute;top:44px;bottom:0;left:0;right:0;overflow-y:auto;scrollbar-width:none;overscroll-behavior:contain;touch-action:pan-y}.scroll-viewport::-webkit-scrollbar{display:none}.app-header{padding:17px 23px 7px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:Georgia,serif;font-weight:750;font-style:italic;font-size:36px;letter-spacing:-2px;line-height:1;color:#318e8e}.brand small{color:#ffb8aa;font-size:32px}.header-actions{display:flex;gap:10px}.round-action{display:grid;place-items:center;width:35px;height:35px;background:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.9);border-radius:13px;color:#73999c;box-shadow:0 4px 15px rgba(77,129,142,.05)}.headline{padding:15px 24px 16px}.headline .eyebrow{font-size:11px;color:#80a0a2;letter-spacing:1.2px;font-weight:650}.headline h2{margin:6px 0 5px;color:#29474c;font-size:29px;letter-spacing:-1px;font-weight:760}.headline p{margin:0;color:#8ca5a7;font-size:12px;line-height:1.5}.content{padding:0 16px}.card{background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);border-radius:23px;box-shadow:0 6px 18px rgba(59,124,133,.055);margin-bottom:13px;overflow:hidden}.author-line{display:flex;gap:9px;align-items:center;padding:14px 14px 11px}.avatar{width:33px;height:33px;border-radius:50%;background:linear-gradient(145deg,#b8e7e1,#a9cbef);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:750;flex:none}.author-copy{flex:1}.author-copy b{display:block;font-size:12px;color:#40575a}.author-copy small{display:block;font-size:10px;color:#9daeb0;margin-top:3px}.more-icon{color:#a2b4b3;font-weight:bold}.post-text{font-size:12px;line-height:1.75;margin:0;padding:0 15px 13px;color:#496065}.photo-scene{height:211px;position:relative;overflow:hidden;background:linear-gradient(145deg,#a6d8e8,#d9eee8)}.photo-scene svg{width:100%;height:100%;object-fit:cover}.scene-sticker{position:absolute;left:12px;bottom:13px;border-radius:20px;padding:5px 9px;color:#fff;background:rgba(26,64,73,.22);backdrop-filter:blur(12px);font-size:10px;font-weight:600;border:1px solid rgba(255,255,255,.28)}.reactions{display:flex;gap:18px;align-items:center;padding:12px 15px 14px;font-size:11px;color:#8ca2a3}.reactions span{display:flex;align-items:center;gap:5px}.reactions svg{width:15px;height:15px;stroke:#9aafb0;fill:none;stroke-width:1.7}.reactions .right{margin-left:auto}.post-card-compact{padding:15px}.mini-gradient{margin-top:11px;height:120px;border-radius:16px;position:relative;overflow:hidden;background:linear-gradient(156deg,#fcd8a8,#b5dae4 50%,#a3c4a6)}.mini-gradient::before{content:"";position:absolute;width:280px;height:150px;border-radius:50%;top:54px;left:-40px;transform:rotate(-16deg);background:linear-gradient(#789fa0,#7cb8a8)}.mini-gradient::after{content:"";position:absolute;width:220px;height:160px;border-radius:50%;top:73px;right:-60px;background:#587e88}.bottom-space{height:143px}
@@ -26,6 +26,134 @@
 .phone-screen.night{color:#e6f3f3;background:#15262b}.phone-screen.night .ambient{background:radial-gradient(circle at 15% 6%,rgba(61,99,125,.4),transparent 54%),radial-gradient(circle at 92% 55%,rgba(38,95,80,.3),transparent 52%),linear-gradient(#192a32,#203b3e)}.phone-screen.night .status-bar{color:#e9f5f5}.phone-screen.night .headline h2{color:#e0efec}.phone-screen.night .headline p,.phone-screen.night .headline .eyebrow{color:#90afb2}.phone-screen.night .brand{color:#7bc7c6}.phone-screen.night .card{background:rgba(45,69,75,.77);border-color:rgba(187,227,222,.12)}.phone-screen.night .author-copy b,.phone-screen.night .post-text,.phone-screen.night .chat-detail strong,.phone-screen.night .profile-hero h3,.phone-screen.night .profile-menu .menu-row{color:#e0eeee}.phone-screen.night .round-action{background:rgba(54,84,89,.65);border-color:rgba(208,242,243,.13)}.phone-screen.night .dock-backdrop{background:rgba(56,68,80,calc(var(--glass-tint) * 1.55));border-color:rgba(255,255,255,.24)}.phone-screen.night .dock-indicator{background:linear-gradient(145deg,rgba(210,228,243,.36),rgba(111,147,156,.30) 60%,rgba(237,244,252,.22));border-color:rgba(245,250,255,.3)}.phone-screen.night .dock-tab{color:#d6e2e1}.phone-screen.night .dock-tab.active{color:#8ad7ff}.phone-screen.night .ai-panel{background:linear-gradient(145deg,rgba(41,76,81,.95),rgba(30,57,66,.95));border-color:rgba(255,255,255,.13)}.phone-screen.night .ai-panel h3{color:#e7f3f2}.phone-screen.night .question-card{background:#3a5e62;color:#e6f3ee}.phone-screen.night .profile-menu .menu-row{border-color:#466366}.phone-screen.night .home-bar{background:rgba(239,249,248,.58)}
 @media(max-width:720px){html,body{height:100%;overflow:hidden}.preview-layout{margin:0;padding:0;height:100dvh;max-width:none}.top-heading,.controls{display:none}.workstation{display:block;height:100%}.phone{border:0;box-shadow:none;border-radius:0;width:100vw;height:100dvh;min-height:0;max-width:none}.phone::after{display:none}.status-bar{height:58px;padding-top:18px}.dynamic-island{top:10px}.scroll-viewport{top:58px}.dock-area{left:13px;right:13px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}.home-bar{bottom:calc(5px + env(safe-area-inset-bottom,0px))}.mobile-settings{display:grid;place-items:center}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Liquid Glass V2: continuous ovals, no filtered/masked polygon border */
+:root{
+  --glass-tint:.08;--lens-tint:.19;--glass-blur:13px;
+  --glass-stroke:.52;--accent:#087ddd;
+}
+.dock-area{
+ position:absolute;z-index:35;left:10px;right:10px;
+ bottom:calc(19px + env(safe-area-inset-bottom, 0px));
+ height:82px;border-radius:9999px;isolation:isolate;
+ touch-action:none;user-select:none;-webkit-user-select:none;
+ transform:translate3d(0,0,0);will-change:transform;
+ -webkit-tap-highlight-color:transparent;
+}
+.dock-backdrop{
+ position:absolute;inset:0;border-radius:9999px;
+ background:rgba(255,255,255,var(--glass-tint));
+ border:1px solid rgba(255,255,255,.64);
+ -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(135%) contrast(1.04);
+ backdrop-filter:blur(var(--glass-blur)) saturate(135%) contrast(1.04);
+ box-shadow:
+  0 9px 22px rgba(34,68,79,.09),
+  0 1px 3px rgba(43,90,103,.08),
+  inset 0 2px 1px rgba(255,255,255,.74),
+  inset 0 -2px 3px rgba(73,100,136,.13),
+  inset 13px 0 15px -15px rgba(109,179,255,.75),
+  inset -13px 0 15px -15px rgba(244,164,255,.72);
+ overflow:hidden;
+}
+.dock-backdrop::before{
+ content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;
+ background:
+  radial-gradient(ellipse 55px 120px at 0% 47%,rgba(131,179,255,.38),transparent 90%),
+  radial-gradient(ellipse 48px 110px at 100% 46%,rgba(238,180,255,.29),transparent 90%),
+  linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,0) 29%,rgba(255,255,255,0) 70%,rgba(255,255,255,.17));
+}
+.dock-backdrop::after{
+ content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.70),inset 0 -1px 0 rgba(255,255,255,.45),inset 1px 0 0 rgba(173,206,254,.40),inset -1px 0 0 rgba(255,187,232,.37);
+}
+.dock-highlight{
+ position:absolute;inset:-1px;border-radius:9999px;pointer-events:none;z-index:4;
+ border:1px solid rgba(255,255,255,.34);
+ box-shadow:0 0 0 .5px rgba(160,175,185,.19),inset 0 1px 0 rgba(255,255,255,.72);
+}
+.dock-indicator{
+ position:absolute;z-index:1;left:0;top:4px;bottom:auto;width:90px;height:74px;
+ border-radius:9999px;pointer-events:none;overflow:hidden;
+ transform:translate3d(0,0,0);transition:transform .47s cubic-bezier(.18,1.1,.30,1),width .3s;
+ background:rgba(255,255,255,var(--lens-tint));
+ border:1px solid rgba(255,255,255,.57);
+ -webkit-backdrop-filter:blur(calc(var(--glass-blur) * .84)) saturate(150%);
+ backdrop-filter:blur(calc(var(--glass-blur) * .84)) saturate(150%);
+ box-shadow:0 4px 14px rgba(57,75,91,.075),
+ inset 0 2px 1px rgba(255,255,255,.77),inset 0 -2px 4px rgba(105,107,143,.09),
+ inset 8px 0 12px -12px rgba(82,154,245,.65),
+ inset -8px 0 12px -12px rgba(250,155,243,.66);
+}
+.dock-indicator::before{
+ content:"";position:absolute;inset:1px;border-radius:inherit;
+ background:linear-gradient(105deg,rgba(158,217,255,.13),transparent 39%,rgba(255,255,255,.13) 58%,rgba(252,178,240,.10));
+ box-shadow:inset 1px 0 0 rgba(171,215,255,.36),inset -1px 0 0 rgba(255,192,238,.4);
+ pointer-events:none;
+}
+.dock-indicator::after{content:"";position:absolute;left:15%;top:2px;right:15%;height:8px;border-radius:50%;background:rgba(255,255,255,.31);filter:blur(4px)}
+.dock-indicator.following{transition:none!important}
+.dock-indicator.settling{animation:liquidBounce .48s ease-out}
+@keyframes liquidBounce{0%{scale:1.04 .96}45%{scale:.975 1.025}100%{scale:1 1}}
+.dock-items{height:100%;position:relative;z-index:6;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:4px}
+.dock-tab{
+ position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:3px;background:none;border:0;border-radius:999px;padding:0 2px;
+ color:#29343b;transition:color .2s;outline:none;-webkit-tap-highlight-color:transparent;
+ touch-action:none;user-select:none;-webkit-user-select:none;
+}
+.dock-tab:active{transform:none}
+.dock-tab.active,.dock-tab.is-hovered{color:#007bea}
+.dock-tab:focus-visible{outline:2px solid rgba(6,116,219,.65);outline-offset:-3px}
+.dock-tab .dt-icon{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;height:30px;width:32px}
+.dock-tab .dt-svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dock-tab .dt-label{font-size:11px;letter-spacing:0;font-weight:700;white-space:nowrap;line-height:1.14}
+.dock-tab .nav-badge{position:absolute;right:10px;top:10px;width:7px;height:7px;border-radius:100%;background:#ff7078;border:1px solid white}
+.dock-tab .anim-layer{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);width:70px;height:55px;opacity:0;pointer-events:none;z-index:9;overflow:visible}
+.dock-tab .anim-layer *{pointer-events:none}
+.dock-tab.playing .anim-layer{opacity:1}
+.dock-tab.playing .dt-svg{animation:iconFade .90s ease forwards}
+@keyframes iconFade{0%{opacity:1;transform:scale(1)}12%{opacity:0;transform:scale(.72)}70%{opacity:0}100%{opacity:1;transform:scale(1)}}
+.dock-tab.playing[data-page=posts] .anim-layer{animation:layerGone .91s ease both}
+.dock-tab.playing[data-page=posts] .al-path{stroke-dasharray:120;stroke-dashoffset:120;animation:pathDraw .9s ease forwards}
+.dock-tab.playing[data-page=posts] .al-pen{animation:penLiftMove .9s ease forwards}
+@keyframes layerGone{0%,83%{opacity:1}100%{opacity:0}}
+@keyframes pathDraw{0%,5%{stroke-dashoffset:120}70%,83%{stroke-dashoffset:0}100%{stroke-dashoffset:120}}
+@keyframes penLiftMove{0%{transform:rotate(0) translate(0,0);opacity:0}7%{transform:rotate(-25deg) translate(0,-3px);opacity:1}70%{transform:rotate(5deg) translate(55px,0);opacity:1}84%{opacity:1}100%{transform:rotate(0) translate(5px,0);opacity:0}}
+.dock-tab.playing[data-page=chat] .anim-layer{animation:layerGone .91s ease both}
+.dock-tab.playing[data-page=chat] .al-bubble-1{animation:bubbleOne .9s ease forwards}
+.dock-tab.playing[data-page=chat] .al-bubble-2{animation:bubbleTwo .9s ease forwards}
+.dock-tab.playing[data-page=chat] .al-bubble-3{animation:bubbleThree .9s ease forwards}
+@keyframes bubbleOne{0%,8%{transform:translate(8px,20px) scale(0);opacity:0}19%{transform:translate(8px,20px) scale(1.1);opacity:1}33%,70%{transform:translate(8px,20px) scale(1);opacity:1}100%{transform:translate(8px,9px) scale(.9);opacity:0}}
+@keyframes bubbleTwo{0%,28%{transform:translate(50px,5px) scale(0);opacity:0}41%{transform:translate(50px,5px) scale(1.12);opacity:1}55%,75%{transform:translate(50px,5px) scale(1);opacity:1}100%{transform:translate(56px,-3px) scale(.8);opacity:0}}
+@keyframes bubbleThree{0%,49%{transform:translate(0,2px) scale(0);opacity:0}61%{transform:translate(0,2px) scale(1.1);opacity:1}77%{transform:translate(0,2px) scale(1);opacity:1}100%{transform:translate(-8px,-10px) scale(.8);opacity:0}}
+.dock-tab.playing[data-page=ai] .al-spark{animation:sparkFloat .9s ease both}
+.dock-tab.playing[data-page=ai] .al-spark:nth-child(2){animation-delay:.1s}.dock-tab.playing[data-page=ai] .al-spark:nth-child(3){animation-delay:.19s}
+.dock-tab.playing[data-page=ai] .al-person-head,.dock-tab.playing[data-page=ai] .al-person-body{animation:personFlash .9s ease both}
+@keyframes sparkFloat{0%,8%{opacity:0;transform:scale(.3)}24%{opacity:1;transform:translateY(-6px) scale(1.5)}72%{opacity:.7}100%{opacity:0;transform:translateY(-16px) scale(.4)}}
+@keyframes personFlash{0%,18%{opacity:0;transform:scale(.3)}31%,62%{opacity:.85;transform:scale(1.03)}100%{opacity:0;transform:scale(.8)}}
+.dock-tab.playing[data-page=photos] .al-flower{animation:flowerFade .95s both}
+.dock-tab.playing[data-page=photos] .al-petal-g{animation:petalOut .92s cubic-bezier(.25,.8,.25,1) both}
+.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(2){--dx:13px;--dy:-9px;--rot:25deg}.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(3){--dx:15px;--dy:9px;--rot:-28deg}.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(4){--dx:0px;--dy:16px;--rot:14deg}.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(5){--dx:-15px;--dy:9px;--rot:-25deg}.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(6){--dx:-14px;--dy:-9px;--rot:27deg}.dock-tab.playing[data-page=photos] .al-petal-g:nth-child(1){--dx:0px;--dy:-17px;--rot:-18deg}
+@keyframes flowerFade{0%{opacity:1}92%{opacity:1}100%{opacity:0}}
+@keyframes petalOut{0%,8%{opacity:1;transform:translate(0,0)}33%{opacity:1;transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}70%{opacity:.8;transform:translate(0,0) rotate(0)}100%{opacity:0}}
+.dock-tab.playing[data-page=profile] .al-wave{animation:waveBurst .91s ease both}
+.dock-tab.playing[data-page=profile] .al-wave:nth-of-type(2){animation-delay:.05s}.dock-tab.playing[data-page=profile] .al-wave:nth-of-type(3){animation-delay:.12s}
+.dock-tab.playing[data-page=profile] .al-person-head,.dock-tab.playing[data-page=profile] .al-person-body{animation:personFlash .9s both}
+@keyframes waveBurst{0%,10%{opacity:0;transform:scale(.6)}33%{opacity:1;transform:scale(1.12)}65%{opacity:.8}100%{opacity:0;transform:scale(1.45)}}
+.phone-screen.night .dock-backdrop{background:rgba(13,26,40,var(--glass-tint));border-color:rgba(215,234,255,.30);box-shadow:0 14px 30px rgba(0,0,0,.25),inset 0 2px 1px rgba(255,255,255,.2)}
+.phone-screen.night .dock-indicator{background:rgba(168,186,230,var(--lens-tint));border-color:rgba(247,251,255,.4)}
+.phone-screen.night .dock-tab{color:#f1f8fd}
+.phone-screen.night .dock-tab.active,.phone-screen.night .dock-tab.is-hovered{color:#7cc5ff}
+.phone-screen.night .dock-backdrop::before{opacity:.45}
+.dock-area.repositioning{cursor:grab}.dock-area.is-moving{cursor:grabbing}
+.control-helper{font-size:12px;line-height:1.65;color:#879da3;margin:13px 0 8px}
+.control-buttons{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.control-buttons button{min-height:35px;padding:8px 13px;border-radius:14px;border:1px solid rgba(83,159,165,.19);background:rgba(255,255,255,.7);color:#52737a;font-size:12px;font-weight:700}
+.control-buttons button.on{color:#0678ca;background:rgba(187,225,252,.54);border-color:rgba(72,160,227,.38)}
+@media(min-width:700px) and (max-height:900px){.phone{min-height:0;height:calc(100dvh - 193px);max-height:700px}.preview-layout{padding-top:24px}.top-heading{margin-bottom:22px}}
+@media(max-width:500px){.dock-tab .dt-svg{width:27px;height:27px}.dock-tab .dt-label{font-size:10px}.dock-tab .anim-layer{width:66px;height:53px}.dock-area{left:9px;right:9px}}
+@media(prefers-reduced-motion:reduce){.dock-indicator{transition:none!important}.dock-tab.playing .anim-layer,.dock-tab.playing .dt-svg,.dock-tab.playing .anim-layer *{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -41,20 +169,23 @@
 <div class="headline"><div class="eyebrow" id="eyebrow">SHARE YOUR MOMENTS</div><h2 id="pageTitle">一些日常碎片。</h2><p id="pageSubtitle">在这里，记录生活中微小而美好的时刻。</p></div>
 <div class="content" id="content"></div><div class="bottom-space"></div>
 </div>
-<nav class="dock-area" aria-label="主导航" id="dock">
-<div class="dock-backdrop" aria-hidden="true"></div><div class="dock-highlight" aria-hidden="true"></div><div class="dock-indicator" id="glassPill" aria-hidden="true"></div>
-<div class="dock-items" id="dockItems">
-<button class="dock-tab active" type="button" data-index="0" data-page="posts" aria-label="帖子" aria-current="page"><svg viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l4-.9L20 7.1a2.5 2.5 0 0 0-3.5-3.5L4.6 15.5 4 20Z"/></svg><span class="tab-caption">帖子</span></button>
-<button class="dock-tab" type="button" data-index="1" data-page="chat" aria-label="聊天"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H6l-3 2v-7a8 8 0 1 1 17-3Z"/><path d="M8 11h8m-8 3h5"/></svg><span class="tab-caption">聊天</span><i class="notice-dot"></i></button>
-<button class="dock-tab" type="button" data-index="2" data-page="ai" aria-label="小猫 AI"><svg viewBox="0 0 24 24"><path d="M6 9 5 3l5 3h4l5-3-1 6a8 8 0 1 1-12 0Z"/><path d="M9 14h.01M15 14h.01m-4 3 1 1 1-1"/></svg><span class="tab-caption">小猫AI</span></button>
-<button class="dock-tab" type="button" data-index="3" data-page="photos" aria-label="照片墙"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 18 5-5 3.1 3 3.4-4 4.5 5"/></svg><span class="tab-caption">照片墙</span></button>
-<button class="dock-tab" type="button" data-index="4" data-page="profile" aria-label="我的"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg><span class="tab-caption">我的</span></button>
-</div></nav><div class="home-bar" aria-hidden="true"></div>
+<nav class="dock-area" aria-label="主导航，按住横向拖拽选中玻璃" id="dock"><div class="dock-backdrop" aria-hidden="true"></div><div class="dock-highlight" aria-hidden="true"></div><div class="dock-indicator" id="glassPill" aria-hidden="true"></div><div class="dock-items" id="dockItems"><button class="dock-tab active" type="button" data-index="0" data-page="posts" aria-label="帖子" aria-current="page"><span class="dt-icon"><svg class="dt-svg" viewBox="0 0 24 24"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></span><span class="dt-label">帖子</span><svg class="anim-layer" viewBox="0 0 80 60" aria-hidden="true"><defs><linearGradient id="linePaint" x1="0" x2="1"><stop stop-color="#ff6b6b"/><stop offset=".5" stop-color="#4ecdc4"/><stop offset="1" stop-color="#ffe66d"/></linearGradient></defs><path class="al-path" d="M8 32 Q22 12 38 28 T70 18" stroke="url(#linePaint)" stroke-width="3" fill="none" stroke-linecap="round"/><g class="al-pen"><g transform="rotate(25)"><rect x="-2" y="-4" width="5" height="24" rx="1.5" fill="#f59e0b" stroke="#d97706" stroke-width=".8"/><rect x="-2" y="6" width="5" height="4" fill="#fbbf24" opacity=".5"/><rect x="-2" y="18" width="5" height="3" fill="#9ca3af"/><path d="M-2 21 .5 28 3 21Z" fill="#ff6b6b"/></g></g></svg></button>
+<button class="dock-tab" type="button" data-index="1" data-page="chat" aria-label="聊天"><span class="dt-icon"><svg class="dt-svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span><span class="dt-label">聊天</span><svg class="anim-layer" viewBox="0 0 80 60" aria-hidden="true"><g class="al-bubble-1" transform="translate(8,20)"><path d="M0 0 Q0 -12 14 -12H28Q32 -12 32 -8V6Q32 10 28 10H18L14 16 10 10H0Q-4 10 -4 6V-8Q-4 -12 0 0Z" fill="rgba(74,108,247,.17)" stroke="rgba(74,108,247,.6)" stroke-width="1.2"/><path d="M4 -4H24M4 2H18M4 8H20" stroke="#566bac" stroke-linecap="round"/></g><g class="al-bubble-2" transform="translate(50,5)"><rect x="-4" y="-10" width="28" height="18" rx="6" fill="rgba(74,108,247,.13)" stroke="rgba(74,108,247,.3)"/><path d="M4 -4H17" stroke="#566bac"/></g><g class="al-bubble-3" transform="translate(0,2)"><rect x="-4" y="-7" width="21" height="14" rx="6" fill="rgba(74,108,247,.12)" stroke="rgba(74,108,247,.3)"/></g></svg><i class="nav-badge"></i></button>
+<button class="dock-tab" type="button" data-index="2" data-page="ai" aria-label="小猫AI"><span class="dt-icon"><svg class="dt-svg" viewBox="0 0 24 24"><path d="M12 3c-1.7.6-2.7 1.9-3 3.4C7.2 7 5.6 8.5 5.3 10.5 4.5 11 4 12 4 13.2a5 5 0 0 0 2.4 4.3c1 .5 2.3.8 3.8.8H14c1.5 0 2.8-.3 3.8-.8a5 5 0 0 0 2.4-4.3c0-1.2-.5-2.2-1.3-2.7C18.6 8.5 17 7 15.3 6.4 15 4.9 14 3.6 12.3 3Z"/><path d="M9 14h.01M12.5 14.5h.01M15 13.5h.01"/><path d="M7.5 18l-.8 3M16.5 18l.8 3"/></svg></span><span class="dt-label">小猫AI</span><svg class="anim-layer" viewBox="0 0 80 60" aria-hidden="true"><g class="al-person" transform="translate(40,30)"><circle class="al-person-head" cx="0" cy="-8" r="5" fill="currentColor" opacity="0"/><path class="al-person-body" d="M-7 2a7 6 0 0 1 14 0" fill="currentColor" opacity="0"/><circle class="al-spark" cx="0" cy="-17" r="2" fill="#fbbf24"/><circle class="al-spark" cx="8" cy="-12" r="1.6" fill="#60a5fa"/><circle class="al-spark" cx="-8" cy="-12" r="1.7" fill="#34d399"/></g></svg></button>
+<button class="dock-tab" type="button" data-index="3" data-page="photos" aria-label="照片墙"><span class="dt-icon"><svg class="dt-svg" viewBox="-2 -2 28 28" style="stroke:none"><g transform="translate(12 12)"><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(0)"/><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(60)"/><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(120)"/><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(180)"/><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(240)"/><ellipse cx="0" cy="-6" rx="3.2" ry="6" fill="none" stroke="#ec4899" stroke-width="1.1" transform="rotate(300)"/><circle cx="0" cy="0" r="2.3" fill="none" stroke="#d97706" stroke-width="1.1"/></g></svg></span><span class="dt-label">照片墙</span><svg class="anim-layer" viewBox="0 0 90 70" aria-hidden="true"><g class="al-flower" transform="translate(45 35)"><g class="al-petal-g"><g transform="rotate(0)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><g class="al-petal-g"><g transform="rotate(60)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><g class="al-petal-g"><g transform="rotate(120)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><g class="al-petal-g"><g transform="rotate(180)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><g class="al-petal-g"><g transform="rotate(240)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><g class="al-petal-g"><g transform="rotate(300)"><ellipse cx="0" cy="-8" rx="3.2" ry="8" fill="#f472b6" stroke="#ec4899" stroke-width="1"/></g></g><circle cx="0" cy="0" r="2.5" fill="#fbbf24" stroke="#d97706"/></g></svg></button>
+<button class="dock-tab" type="button" data-index="4" data-page="profile" aria-label="我的"><span class="dt-icon"><svg class="dt-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></span><span class="dt-label">我的</span><svg class="anim-layer" viewBox="0 0 80 60" aria-hidden="true"><g class="al-person" transform="translate(40 30)"><circle class="al-person-head" cx="0" cy="-8" r="5" fill="currentColor"/><path class="al-person-body" d="M-7 2a7 6 0 0 1 14 0" fill="currentColor"/><path class="al-wave" d="M0 -14V-27" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round"/><path class="al-wave" d="M4 -12 15 -22" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><path class="al-wave" d="M6 -8H21" stroke="#34d399" stroke-width="2" stroke-linecap="round"/><path class="al-wave" d="M-6 -8H-21" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/><path class="al-wave" d="M-4 -12 -15 -22" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"/></g></svg></button></div></nav><div class="home-bar" aria-hidden="true"></div>
 </div></section>
 <aside class="controls">
-<div class="eyebrow">THE MATERIAL</div><h3>像玻璃一样轻，<br>又有真实的质感。</h3><p class="description">点击手机底部的五个按钮，试试液滴切换。页面可以上下滚动，观察玻璃透过不同背景时的变化。</p>
-<div class="control-card"><div class="control-row"><label for="transparency">玻璃透亮度 <output id="transparencyValue">67%</output></label><input id="transparency" type="range" min="10" max="70" value="33" step="1"></div><div class="control-row"><label for="blur">背景模糊 <output id="blurValue">25px</output></label><input id="blur" type="range" min="5" max="42" value="25" step="1"></div><div class="control-row"><label>外观模式</label><div class="choice-buttons"><button class="choice on" type="button" id="lightBtn">☀ 浅色</button><button class="choice" type="button" id="darkBtn">☾ 深色</button></div></div></div>
-<p class="footnote">独立 HTML 原型，未更改 GitHub 代码。<br>推荐用 iPhone Safari 打开体验实时模糊。</p>
+<div class="eyebrow">THE MATERIAL</div><h3>像玻璃一样轻，<br>又有真实的质感。</h3><p class="description">按住导航左右拖动，选中椭圆实时跟手。点击可播放网站同款图标动画。整条胶囊和选中层的透明度能分别调节。</p>
+<div class="control-card">
+<div class="control-row"><label for="transparency">整条胶囊透明度 <output id="transparencyValue">92%</output></label><input id="transparency" type="range" min="0" max="80" value="8" step="1"></div>
+<div class="control-row"><label for="lensTint">选中椭圆透明度 <output id="lensTintValue">81%</output></label><input id="lensTint" type="range" min="0" max="80" value="19" step="1"></div>
+<div class="control-row"><label for="blur">背景折射模糊 <output id="blurValue">13px</output></label><input id="blur" type="range" min="0" max="42" value="13" step="1"></div>
+<div class="control-row"><label>外观模式</label><div class="choice-buttons"><button class="choice on" type="button" id="lightBtn">☀ 浅色</button><button class="choice" type="button" id="darkBtn">☾ 深色</button></div></div>
+<div class="control-helper">默认：按住底部按钮左右滑动，选中椭圆会跟随手指。打开“移动整条胶囊”，可将整条导航拖到屏幕其他位置。</div>
+<div class="control-buttons"><button id="moveDock" type="button" aria-pressed="false">✥ 移动整条胶囊：关闭</button><button id="resetDock" type="button">↺ 复位</button></div>
+</div>
+<p class="footnote">V2 独立 HTML：已参考真实 XTJ 底栏 SVG 与动画，未更改线上仓库。<br>推荐用 iPhone Safari 打开体验实时模糊。</p>
 </aside></div></main>
 <template id="postsTemplate"><article class="card"><div class="author-line"><div class="avatar">江</div><div class="author-copy"><b>徐廷江</b><small>今天 · 生活记录</small></div><span class="more-icon">···</span></div><p class="post-text">趁着天气不错出去走走。<br>光落在水面上，真的很温柔 🌿</p><div class="photo-scene"><svg viewBox="0 0 340 211" preserveAspectRatio="xMidYMid slice" role="img" aria-label="淡蓝天空、连绵青山与湖面的风景插画"><defs><linearGradient id="sk" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a0cce4"/><stop offset=".66" stop-color="#def1e6"/><stop offset="1" stop-color="#f3e5c8"/></linearGradient><linearGradient id="lake" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#9ecac3"/><stop offset="1" stop-color="#b5dbd3"/></linearGradient><linearGradient id="hill" x1="0" x2="1"><stop stop-color="#7da5a7"/><stop offset="1" stop-color="#527e8f"/></linearGradient></defs><rect width="340" height="211" fill="url(#sk)"/><circle cx="263" cy="49" r="28" fill="#fff1c7" opacity=".77"/><g fill="#f5ffff" opacity=".49"><ellipse cx="74" cy="43" rx="48" ry="8"/><ellipse cx="204" cy="76" rx="45" ry="7"/></g><path d="M0 117 51 78 79 98 126 49 165 98 210 63 257 108 291 77 340 115v96H0Z" fill="#98bcb7"/><path d="M0 145 43 108 79 125 139 92 193 143 259 108 306 131 340 119v92H0Z" fill="url(#hill)"/><path d="M0 146q56 10 107-1t111 4q62 8 122-4v66H0Z" fill="url(#lake)"/><path d="M0 158q59 6 105 1t116 4q69 5 119-1" stroke="#e8f4ec" stroke-width="1.4" opacity=".64" fill="none"/><path d="M0 179q67 4 134-3t206 4" stroke="#e2f6ed" stroke-width="1.1" opacity=".5" fill="none"/><path d="M-15 211q30-40 55-53l18 53Z" fill="#5b8d81"/><path d="M280 211q24-45 60-59v59Z" fill="#567e76"/><g stroke="#517c72" stroke-width="2" opacity=".78"><path d="M13 211v-40m5 40v-28m303 28v-34m-6 34v-24"/></g></svg><span class="scene-sticker">📍 一些风景</span></div><div class="reactions"><span><svg viewBox="0 0 24 24"><path d="M20.8 7.3c0-2.1-1.7-3.8-3.8-3.8-1.8 0-3.2 1.1-5 3-1.8-1.9-3.2-3-5-3a3.8 3.8 0 0 0-3.8 3.8c0 5.5 8.8 11.4 8.8 11.4s8.8-5.9 8.8-11.4Z"/></svg> 128</span><span><svg viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-8.5 8.5H6L3 22v-7.5A8.5 8.5 0 1 1 21 12Z"/></svg> 18</span><span class="right">刚刚</span></div></article><article class="card post-card-compact"><div class="author-copy"><b>想把平凡日子都拍下来</b><small style="margin-top:6px">即使不是每天都有好天气。</small></div><div class="mini-gradient"></div></article></template>
 <template id="chatTemplate"><div class="card"><div class="chat-row"><div class="chat-pic">🌿</div><div class="chat-detail"><strong>小宇</strong><p>这张照片是哪里拍的呀？</p></div><div><div class="chat-time">10:42</div><div class="chat-pill"></div></div></div><div class="chat-row"><div class="chat-pic" style="background:linear-gradient(135deg,#e8d8fb,#cde4fe)">☁️</div><div class="chat-detail"><strong>阿林</strong><p>下次一起出去玩～</p></div><div class="chat-time">昨天</div></div><div class="chat-row"><div class="chat-pic" style="background:linear-gradient(135deg,#f8e0c9,#c2e4cf)">🪴</div><div class="chat-detail"><strong>摄影分享群</strong><p>分享了一张风景照片</p></div><div class="chat-time">周一</div></div></div><div class="card post-card-compact"><b style="font-size:13px">最近的相遇</b><p style="font-size:11px;line-height:1.8;color:#95a9ac">一些有趣的人，和一些值得留下的聊天。</p><div class="mini-gradient" style="height:175px;background:linear-gradient(125deg,#b3dadb,#f6d5ce,#e9e6ba)"></div></div></template>
@@ -62,8 +193,86 @@
 <template id="photosTemplate"><div class="photos-grid"><div class="photo-thumb tall"><span>山间晴日</span></div><div class="photo-thumb"><span>落日余晖</span></div><div class="photo-thumb"><span>街角晚风</span></div><div class="photo-thumb tall"><span>蓝色时刻</span></div><div class="photo-thumb"><span>再看一眼</span></div><div class="photo-thumb"><span>旅途日记</span></div></div></template>
 <template id="profileTemplate"><div class="card"><div class="profile-hero"><div class="profile-face">江</div><div><h3>徐廷江</h3><p>收藏生活的每一点颜色 ☁️</p></div></div><div class="profile-stats"><span><b>36</b><small>帖子</small></span><span><b>128</b><small>照片</small></span><span><b>92</b><small>喜欢</small></span></div></div><div class="card profile-menu"><div class="menu-row">我的动态 <span>›</span></div><div class="menu-row">我的收藏 <span>›</span></div><div class="menu-row">通知与隐私 <span>›</span></div><div class="menu-row">外观与设置 <span>›</span></div></div><div class="card post-card-compact"><b style="font-size:12px">最近拍摄的风景</b><div class="mini-gradient" style="height:190px"></div></div></template>
 <script>
-(()=>{'use strict';const data=[{page:'posts',tag:'SHARE YOUR MOMENTS',title:'一些日常碎片。',subtitle:'在这里，记录生活中微小而美好的时刻。',template:'postsTemplate'},{page:'chat',tag:'STAY CONNECTED',title:'聊聊最近。',subtitle:'每一次相遇，都有属于自己的故事。',template:'chatTemplate'},{page:'ai',tag:'A LITTLE MAGIC',title:'小猫 AI ✦',subtitle:'把脑袋里的小问号，慢慢变成灵感。',template:'aiTemplate'},{page:'photos',tag:'THE PHOTO WALL',title:'光影收藏夹。',subtitle:'用照片存起这个世界的温柔。',template:'photosTemplate'},{page:'profile',tag:'MY LITTLE SPACE',title:'关于我。',subtitle:'欢迎来到我的小小角落。',template:'profileTemplate'}];const root=document.documentElement,screen=document.getElementById('phoneScreen'),buttons=[...document.querySelectorAll('.dock-tab')],pill=document.getElementById('glassPill'),viewport=document.getElementById('viewport');let active=0,popTimer;
-function select(index,scroll=true){index=Math.max(0,Math.min(data.length-1,index));if(index===active&&document.getElementById('content').children.length)return;active=index;let entry=data[index];buttons.forEach((b,i)=>{b.classList.toggle('active',i===index);if(i===index)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});pill.style.setProperty('--idx',index);pill.classList.remove('is-popping');void pill.offsetWidth;pill.classList.add('is-popping');clearTimeout(popTimer);popTimer=setTimeout(()=>pill.classList.remove('is-popping'),590);document.getElementById('eyebrow').textContent=entry.tag;document.getElementById('pageTitle').textContent=entry.title;document.getElementById('pageSubtitle').textContent=entry.subtitle;document.getElementById('content').replaceChildren(document.getElementById(entry.template).content.cloneNode(true));if(scroll)viewport.scrollTo({top:0,behavior:'instant'})}
-buttons.forEach((btn,i)=>btn.addEventListener('click',()=>select(i)));document.getElementById('dockItems').addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;e.preventDefault();const next=(active+(e.key==='ArrowRight'?1:-1)+5)%5;select(next);buttons[next].focus()});function setMode(dark){screen.classList.toggle('night',dark);document.getElementById('lightBtn').classList.toggle('on',!dark);document.getElementById('darkBtn').classList.toggle('on',dark)}document.getElementById('lightBtn').addEventListener('click',()=>setMode(false));document.getElementById('darkBtn').addEventListener('click',()=>setMode(true));document.getElementById('mobileThemeButton').addEventListener('click',()=>setMode(!screen.classList.contains('night')));const t=document.getElementById('transparency'),blur=document.getElementById('blur');t.addEventListener('input',()=>{root.style.setProperty('--glass-tint',(+t.value/100).toFixed(2));document.getElementById('transparencyValue').textContent=(100-t.value)+'%'});blur.addEventListener('input',()=>{root.style.setProperty('--glass-blur',blur.value+'px');document.getElementById('blurValue').textContent=blur.value+'px'});select(0,false);})();
+(()=>{'use strict';
+const data=[
+ {page:'posts',tag:'SHARE YOUR MOMENTS',title:'一些日常碎片。',subtitle:'在这里，记录生活中微小而美好的时刻。',template:'postsTemplate'},
+ {page:'chat',tag:'STAY CONNECTED',title:'聊聊最近。',subtitle:'每一次相遇，都有属于自己的故事。',template:'chatTemplate'},
+ {page:'ai',tag:'A LITTLE MAGIC',title:'小猫 AI ✦',subtitle:'把脑袋里的小问号，慢慢变成灵感。',template:'aiTemplate'},
+ {page:'photos',tag:'THE PHOTO WALL',title:'光影收藏夹。',subtitle:'用照片存起这个世界的温柔。',template:'photosTemplate'},
+ {page:'profile',tag:'MY LITTLE SPACE',title:'关于我。',subtitle:'欢迎来到我的小小角落。',template:'profileTemplate'}
+];
+const root=document.documentElement,screen=document.getElementById('phoneScreen'),
+ dock=document.getElementById('dock'), pill=document.getElementById('glassPill'),
+ buttons=Array.from(document.querySelectorAll('.dock-tab')),viewport=document.getElementById('viewport');
+let active=0,lensWidth=90,movingDock=false,offsetX=0,offsetY=0;
+let gesture=null, suppressClick=false,raf=0,pendingX=null;
+const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
+function locationForIndex(i){const bar=dock.getBoundingClientRect(),rect=buttons[i].getBoundingClientRect();return clamp(rect.left+rect.width/2-bar.left-lensWidth/2,3,bar.width-lensWidth-3)}
+function writeLens(x,following){pill.classList.toggle('following',following);pill.style.transform=`translate3d(${Math.round(x*10)/10}px,0,0)`}
+function syncLens(){const r=dock.getBoundingClientRect();if(!r.width)return;lensWidth=Math.min(101,Math.max(78,r.width/4.05));pill.style.width=lensWidth+'px';pill.style.height=(r.height-8)+'px';writeLens(locationForIndex(active),false)}
+function paintSelection(index){buttons.forEach((b,i)=>{b.classList.toggle('active',i===index);b.classList.remove('is-hovered');if(i===index)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
+function animateTab(index){const button=buttons[index];button.classList.remove('playing');void button.offsetWidth;button.classList.add('playing');clearTimeout(button._animTimer);button._animTimer=setTimeout(()=>button.classList.remove('playing'),1000)}
+function select(index,options={}){
+ index=clamp(index,0,buttons.length-1);const same=active===index;
+ active=index;paintSelection(index);writeLens(locationForIndex(index),false);
+ pill.classList.remove('settling');void pill.offsetWidth;pill.classList.add('settling');
+ if(!options.silent)animateTab(index);
+ if(same&&!options.force)return;
+ const page=data[index];document.getElementById('eyebrow').textContent=page.tag;
+ document.getElementById('pageTitle').textContent=page.title;
+ document.getElementById('pageSubtitle').textContent=page.subtitle;
+ document.getElementById('content').replaceChildren(document.getElementById(page.template).content.cloneNode(true));
+ if(!options.keepScroll)viewport.scrollTop=0;
+}
+function closestTab(clientX){let best=0,d=Infinity;buttons.forEach((b,i)=>{const r=b.getBoundingClientRect(),dx=Math.abs((r.left+r.width/2)-clientX);if(dx<d){d=dx;best=i}});return best}
+function followX(clientX){const r=dock.getBoundingClientRect();pendingX=clamp(clientX-r.left-lensWidth/2,3,r.width-lensWidth-3);if(raf)return;raf=requestAnimationFrame(()=>{raf=0;writeLens(pendingX,true)})}
+function setDockOffset(x,y){const screenRect=screen.getBoundingClientRect();const baseR=dock.getBoundingClientRect();const w=baseR.width,h=baseR.height;
+ const maxX=Math.max(0,(screenRect.width-w)/2+12),yMin=-Math.max(150,screenRect.height-160),yMax=14;
+ offsetX=clamp(x,-maxX,maxX);offsetY=clamp(y,yMin,yMax);
+ dock.style.transform=`translate3d(${offsetX}px,${offsetY}px,0)`;
+}
+buttons.forEach((btn,i)=>btn.addEventListener('click',()=>{if(suppressClick)return;select(i)}));
+dock.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopPropagation();suppressClick=false}},true);
+dock.addEventListener('pointerdown',e=>{
+ if(e.pointerType==='mouse'&&e.button!==0)return;
+ if(gesture)return;
+ gesture={id:e.pointerId,x:e.clientX,y:e.clientY,startX:offsetX,startY:offsetY,moved:false};
+ try{dock.setPointerCapture(e.pointerId)}catch(_){}
+});
+dock.addEventListener('pointermove',e=>{
+ if(!gesture||e.pointerId!==gesture.id)return;
+ const dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;
+ if(!gesture.moved && Math.hypot(dx,dy)>7)gesture.moved=true;
+ if(!gesture.moved)return;
+ e.preventDefault();
+ if(movingDock){dock.classList.add('is-moving');setDockOffset(gesture.startX+dx,gesture.startY+dy)}
+ else{followX(e.clientX);buttons.forEach((b,i)=>b.classList.toggle('is-hovered',i===closestTab(e.clientX)))}
+});
+function finishGesture(e,cancelled){if(!gesture||e.pointerId!==gesture.id)return;
+ const moved=gesture.moved;gesture=null;dock.classList.remove('is-moving');
+ if(raf){cancelAnimationFrame(raf);raf=0;if(pendingX!=null)writeLens(pendingX,true)}
+ if(!movingDock && !cancelled){select(closestTab(e.clientX))}
+ else{pill.classList.remove('following');syncLens()}
+ if(!cancelled){suppressClick=true;setTimeout(()=>{suppressClick=false},280)}
+}
+dock.addEventListener('pointerup',e=>finishGesture(e,false));
+dock.addEventListener('pointercancel',e=>finishGesture(e,true));
+dock.addEventListener('lostpointercapture',e=>{if(gesture)finishGesture(e,true)});
+document.getElementById('dockItems').addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();let next=(active+(e.key==='ArrowRight'?1:-1)+5)%5;select(next);buttons[next].focus()});
+function setMode(dark){screen.classList.toggle('night',dark);document.getElementById('lightBtn').classList.toggle('on',!dark);document.getElementById('darkBtn').classList.toggle('on',dark)}
+document.getElementById('lightBtn').addEventListener('click',()=>setMode(false));
+document.getElementById('darkBtn').addEventListener('click',()=>setMode(true));
+document.getElementById('mobileThemeButton').addEventListener('click',()=>setMode(!screen.classList.contains('night')));
+for(const [inputId,outId,varName] of [['transparency','transparencyValue','--glass-tint'],['lensTint','lensTintValue','--lens-tint']]){
+ const el=document.getElementById(inputId),out=document.getElementById(outId);
+ el.addEventListener('input',()=>{root.style.setProperty(varName,(+el.value/100).toFixed(2));out.textContent=(100-el.value)+'%'})
+}
+const blur=document.getElementById('blur');blur.addEventListener('input',()=>{root.style.setProperty('--glass-blur',blur.value+'px');document.getElementById('blurValue').textContent=blur.value+'px'});
+const moveButton=document.getElementById('moveDock');
+moveButton.addEventListener('click',()=>{movingDock=!movingDock;moveButton.classList.toggle('on',movingDock);moveButton.setAttribute('aria-pressed',String(movingDock));moveButton.textContent='✥ 移动整条胶囊：'+(movingDock?'开启':'关闭');dock.classList.toggle('repositioning',movingDock)});
+document.getElementById('resetDock').addEventListener('click',()=>{movingDock=false;moveButton.classList.remove('on');moveButton.setAttribute('aria-pressed','false');moveButton.textContent='✥ 移动整条胶囊：关闭';dock.classList.remove('repositioning');offsetX=offsetY=0;dock.style.transform='translate3d(0,0,0)';syncLens()});
+window.addEventListener('resize',syncLens);if(window.ResizeObserver){new ResizeObserver(syncLens).observe(dock)}
+select(0,{force:true,silent:true});requestAnimationFrame(syncLens);
+})();
 </script>
 </body></html>
